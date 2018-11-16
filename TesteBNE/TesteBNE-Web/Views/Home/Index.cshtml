@@ -1,21 +1,11 @@
 ﻿@{
-    Layout = null;
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
 	<div>
 		<h1>Home</h1>
 	</div>
 	<div>
-		@Html.ActionLink("Lista de alunos", "ListaAlunos", "Aluno", null, new { @class = "bnt btn-primary" })
-		@Html.ActionLink("Lista de Disciplinas", "ListaDisciplinas", "Aluno", null, new { @class = "bnt btn-primary" })
+		@Html.ActionLink("Lista de alunos", "IndexAluno", "Aluno", null, new { @class = "bnt btn-default" })
+		@Html.ActionLink("Lista de Disciplinas", "IndexDisciplina", "Disciplina", null, new { @class = "bnt btn-default" })
 	</div>
-</body>
-</html>

@@ -1,5 +1,5 @@
 ﻿@{
-	Layout = null;
+	Layout = ~/Views/Shared/_LayoutPage1.cshtml;
 }
 
 <!DOCTYPE html>
@@ -14,9 +14,14 @@
 		<h1>Lista de alunos</h1>
 	</div>
 
-	<button id="btnListarAlunos" class="button-listar" onclick="get(listar);">Listar</button>
+	<button id="btnListarAlunos" class="button-listar" onclick="get(listar);">Listar Alunos Cadastrados</button>
+
 	<div>
-		<table class="table" id="listaPessoas">
+		@Html.ActionLink("Cadastrar novo Aluno", "CadastroAluno", "Aluno", null, null)
+	</div>
+
+	<div>
+		<table class="table" id="listaAlunos">
 			<thead class="thead-dark">
 				<tr>
 					<th scope="col">ID</th>
@@ -28,6 +33,6 @@
 			</thead>
 			<tbody></tbody>
 		</table>
-	</div>>
+	</div>
 </body>
 </html>

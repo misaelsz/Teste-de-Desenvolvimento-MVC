@@ -53,6 +53,10 @@
     <Compile Include="DB\TesteBNE_DB.cs" />
     <Compile Include="DTO\Aluno.cs" />
     <Compile Include="DTO\Disciplina.cs" />
+    <Compile Include="Migrations\201811151337545_iniciar base.cs" />
+    <Compile Include="Migrations\201811151337545_iniciar base.Designer.cs">
+      <DependentUpon>201811151337545_iniciar base.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -62,6 +66,11 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201811151337545_iniciar base.resx">
+      <DependentUpon>201811151337545_iniciar base.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
