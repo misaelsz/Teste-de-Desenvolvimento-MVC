@@ -33,9 +33,11 @@
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -53,9 +55,9 @@
     <Compile Include="DB\TesteBNE_DB.cs" />
     <Compile Include="DTO\Aluno.cs" />
     <Compile Include="DTO\Disciplina.cs" />
-    <Compile Include="Migrations\201811151337545_iniciar base.cs" />
-    <Compile Include="Migrations\201811151337545_iniciar base.Designer.cs">
-      <DependentUpon>201811151337545_iniciar base.cs</DependentUpon>
+    <Compile Include="Migrations\201811171643335_iniciar banco.cs" />
+    <Compile Include="Migrations\201811171643335_iniciar banco.Designer.cs">
+      <DependentUpon>201811171643335_iniciar banco.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,8 +70,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201811151337545_iniciar base.resx">
-      <DependentUpon>201811151337545_iniciar base.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811171643335_iniciar banco.resx">
+      <DependentUpon>201811171643335_iniciar banco.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,8 +1,13 @@
 ﻿@{
-    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+	Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
 
 <form id="formCadAluno" method="post">
 	<input type="text" id="txtNomeAluno" />
 	<button type="submit" id="bntCadAluno" onclick="cadastrarAluno">Cadastrar</button>
 </form>
+@section MeusScripts{
+	<script src="~/Scripts/cadastrarAluno.js"></script>
+	<script src="~/Servicos/ajax.js"></script>
+	<script src="~/Scripts/carregamentoCadastroAlunoPage.js"></script>
+}

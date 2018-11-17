@@ -3,7 +3,7 @@ namespace TesteBNE.BLL.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class iniciarbase : DbMigration
+    public partial class iniciarbanco : DbMigration
     {
         public override void Up()
         {

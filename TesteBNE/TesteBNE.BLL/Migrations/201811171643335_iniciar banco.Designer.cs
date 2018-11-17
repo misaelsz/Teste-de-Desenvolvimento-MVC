@@ -7,13 +7,13 @@ namespace TesteBNE.BLL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class iniciarbase : IMigrationMetadata
+    public sealed partial class iniciarbanco : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(iniciarbase));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(iniciarbanco));
         
         string IMigrationMetadata.Id
         {
-            get { return "201811151337545_iniciar base"; }
+            get { return "201811171643335_iniciar banco"; }
         }
         
         string IMigrationMetadata.Source
