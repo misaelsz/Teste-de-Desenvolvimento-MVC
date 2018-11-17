@@ -30,6 +30,7 @@ namespace TesteBNEWebAPI.Controllers
                 value.ID = Guid.NewGuid();
                 //bool retorno = PessoaNegocio.AddPessoa(value);
                 //if (retorno == false)
+
                     return Request.CreateResponse(HttpStatusCode.BadRequest);
                 
 

@@ -30,16 +30,16 @@ $(document).ready(function () {
 		$("#bntCadAluno").click(function () {
 			var pessoa;
 
-			var Pessoa = cadastrarAluno(pessoa);
-			console.log("Objeto a ser inserido no banco :" + Pessoa)
-			Pessoa = JSON.parse(Pessoa);
-			console.log("nome do cara" + Pessoa.Nome_Aluno);
-			console.log(Pessoa);
+			var Aluno = cadastrarAluno(pessoa);
+			console.log("Objeto a ser inserido no banco :" + Aluno)
+			Pessoa = JSON.parse(Aluno);
+			console.log("nome do cara" + Aluno.Nome_Aluno);
+			console.log(Aluno);
 			if (Pessoa.Nome_Aluno == "") {
 				alert("campos obrigatórios não preenchidos");
 			} else {
-				Pessoa = JSON.stringify(Pessoa);
-				post(Pessoa);
+				Pessoa = JSON.stringify(Aluno);
+				postAluno(Aluno);
 			}
 		});
 	}
