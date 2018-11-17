@@ -23,9 +23,22 @@ namespace TesteBNEWebAPI.Controllers
         }
 
         // POST: api/Aluno
-        public void Post([FromBody]Aluno value)
+        public HttpResponseMessage Post([FromBody]Aluno value)
         {
+            try
+            {
+                value.ID = Guid.NewGuid();
+                //bool retorno = PessoaNegocio.AddPessoa(value);
+                //if (retorno == false)
+                    return Request.CreateResponse(HttpStatusCode.BadRequest);
+                
 
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
 
         // PUT: api/Aluno/5

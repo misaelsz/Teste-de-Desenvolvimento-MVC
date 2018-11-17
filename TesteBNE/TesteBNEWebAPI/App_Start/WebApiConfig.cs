@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace TesteBNEWebAPI
 {
@@ -9,6 +10,9 @@ namespace TesteBNEWebAPI
     {
         public static void Register(HttpConfiguration config)
         {
+
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
             // Serviços e configuração da API da Web
 
             // Rotas da API da Web
@@ -19,6 +23,12 @@ namespace TesteBNEWebAPI
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            var json = config.Formatters.JsonFormatter;
+            json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
+            json.Indent = true;
+
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
         }
     }
 }
