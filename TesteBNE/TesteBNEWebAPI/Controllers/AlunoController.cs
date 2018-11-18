@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using TesteBNE.BLL.DAL;
 using TesteBNE.BLL.DTO;
 
 namespace TesteBNEWebAPI.Controllers
@@ -23,16 +24,14 @@ namespace TesteBNEWebAPI.Controllers
         }
 
         // POST: api/Aluno
-        public HttpResponseMessage Post([FromBody]Aluno value)
+        public HttpResponseMessage Post([FromBody]Aluno aluno)
         {
             try
             {
-                value.ID = Guid.NewGuid();
-                //bool retorno = PessoaNegocio.AddPessoa(value);
-                //if (retorno == false)
-
+                aluno.ID = Guid.NewGuid();
+                bool retorno = AlunoDAO.CadastrarAluno(aluno);
+                if (retorno == false)
                     return Request.CreateResponse(HttpStatusCode.BadRequest);
-                
 
                 return Request.CreateResponse(HttpStatusCode.OK);
             }

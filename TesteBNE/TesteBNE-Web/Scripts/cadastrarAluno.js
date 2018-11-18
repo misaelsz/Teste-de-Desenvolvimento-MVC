@@ -1,9 +1,11 @@
-﻿function cadastrarAluno(pessoa) {
-	var pessoa = JSON.stringify({
+﻿function cadastrarAluno() {
+	var aluno = JSON.stringify({
+		ID:null,
 		Nome_Aluno: $("#txtNomeAluno").val(),
+		ListaDisciplinas:null
 		
 	});
-	return pessoa;
+	return aluno;
 
 
 }

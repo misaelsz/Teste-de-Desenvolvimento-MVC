@@ -28,18 +28,18 @@ $(document).ready(function () {
 	}
 	else {
 		$("#bntCadAluno").click(function () {
-			var pessoa;
 
-			var Aluno = cadastrarAluno(pessoa);
+			var Aluno = cadastrarAluno();
 			console.log("Objeto a ser inserido no banco :" + Aluno)
 			Pessoa = JSON.parse(Aluno);
-			console.log("nome do cara" + Aluno.Nome_Aluno);
-			console.log(Aluno);
+			console.log("nome do cara: " + Pessoa.Nome_Aluno);
+			console.log(Pessoa);
 			if (Pessoa.Nome_Aluno == "") {
 				alert("campos obrigatórios não preenchidos");
 			} else {
-				Pessoa = JSON.stringify(Aluno);
-				postAluno(Aluno);
+				Pessoa = JSON.stringify(Pessoa);
+				console.log("depois do metodo stringfy: "+ Pessoa);
+				postAluno(Pessoa);
 			}
 		});
 	}
