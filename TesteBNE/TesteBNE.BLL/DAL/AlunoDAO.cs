@@ -13,29 +13,35 @@ namespace TesteBNE.BLL.DAL
 
         #region consultas
         //comandos sql
-        public const string spListarAlunos= "SELECT * FROM dbo.ALUNOS";
+        public const string spListarAlunos = "SELECT * FROM dbo.ALUNOS";
         public const string spBuscarPorId = "SELECT * FROM dbo.ALUNOS WHERE ID = @id";
-        public const string spInsertAluno = "INSERT INTO dbo.ALUNOS VALUES(@Nome_Aluno)";
+        public const string spInsertAluno = "INSERT INTO dbo.Alunos VALUES(@Nome_Aluno)";
         #endregion
         #region Metodos
-        public static bool CadastrarAluno(Aluno aluno) {
+        public static bool CadastrarAluno(Aluno aluno)
+        {
 
-            using (SqlConnection conn = new SqlConnection(Helper.ConnectionValue("TesteBNE_DB").ToString())) 
+
+            //string connectionString = Helper.ConnectionValue("TesteBNE_DB").ToString();
+            using (SqlConnection conn = new SqlConnection("data source=CQI-DEV-1100\\SQLEXPRESS01;initial catalog=TesteBNE_DB;persist security info=True; Integrated Security = SSPI; "))
             {
                 conn.Open();
                 try
                 {
-                    using (SqlCommand command = new SqlCommand(spInsertAluno, conn)) {
+                    using (SqlCommand command = new SqlCommand(spInsertAluno, conn))
+                    {
                         command.Parameters.Add(new SqlParameter("Nome_Aluno", aluno.Nome_Aluno));
                         command.ExecuteNonQuery();
                         return true;
                     }
                 }
-                catch (Exception e){
+                catch (Exception e)
+                {
                     //falta fazer o tratamento da excessao
                     return false;
                 }
             }
+
         }
         #endregion
     }
