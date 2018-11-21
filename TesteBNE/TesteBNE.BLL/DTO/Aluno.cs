@@ -12,7 +12,7 @@ namespace TesteBNE.BLL.DTO
   public class Aluno
     {
         [Key]
-        public Guid ID { get; set; }
+        public int ID { get; set; }
         public String Nome_Aluno { get; set; }
         public List<Disciplina> ListaDisciplinas { get; set; }
     }

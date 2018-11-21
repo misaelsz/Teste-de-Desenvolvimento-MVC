@@ -12,9 +12,17 @@ namespace TesteBNEWebAPI.Controllers
     public class AlunoController : ApiController
     {
         // GET: api/Aluno
-        public IEnumerable<string> Get()
+        public HttpResponseMessage Get()
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, AlunoDAO.ListarAlunos());
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
 
         // GET: api/Aluno/5
@@ -28,7 +36,6 @@ namespace TesteBNEWebAPI.Controllers
         {
             try
             {
-                aluno.ID = Guid.NewGuid();
                 bool retorno = AlunoDAO.CadastrarAluno(aluno);
                 if (retorno == false)
                     return Request.CreateResponse(HttpStatusCode.BadRequest);
