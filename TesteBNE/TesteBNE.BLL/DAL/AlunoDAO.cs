@@ -76,6 +76,9 @@ namespace TesteBNE.BLL.DAL
                 return null;
             }
         }
+        public static Aluno ListarALunoPorId(int id) {
+            
+        }
 
         #endregion
     }

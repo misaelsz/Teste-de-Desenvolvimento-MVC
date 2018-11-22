@@ -4,6 +4,8 @@
 //	$.post("http://localhost:63689/api/Aluno", aluno, function () { }, 'json')
 //};
 
+document.write(unescape("%3Cscript src='Scripts/editarAluno.js' type='text/javascript'%3E%3C/script%3E"));
+
 function postAluno(pessoa) {
 	$.ajax({
 
@@ -45,12 +47,12 @@ function get(funcao) {
 
 function getPorId(id) {
 	$.ajax({
-		url: 'http://localhost:52698/api/pessoa/' + id,
+		url: 'http://localhost:63689/api/Aluno/' + id,
 		method: 'GET',
 		contentType: 'application/json; charset=UTF-8',
 	}).then(function (resposta) {
 		console.log("dentro da requisicao" + resposta);
-		funcao(resposta);
+		editar(resposta);
 	})
 
 }
@@ -105,4 +107,24 @@ function Delete(id) {
 			window.location.assign(url);
 		});
 	})
+}
+
+function editar(resposta) {
+	var e = resposta;
+	console.log("retorno do callback" + e);
+
+	console.log("retorno: " + JSON.stringify(e.Nome_Aluno));
+	document.getElementById('txtNomeAluno').value = e.Nome_Aluno;
+
+
+	$('#btnCadastrar').click(function () {
+
+		e.Nome_Aluno = document.getElementById('txtNomeAluno').value;
+
+		console.log("valores do objeto e" + e.Nome_Aluno);
+
+		var id = e.ID;
+		var pessoa = e;
+		put(id, pessoa);
+	});
 }

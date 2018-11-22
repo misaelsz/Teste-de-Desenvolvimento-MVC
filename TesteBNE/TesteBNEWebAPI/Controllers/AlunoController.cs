@@ -26,9 +26,17 @@ namespace TesteBNEWebAPI.Controllers
         }
 
         // GET: api/Aluno/5
-        public string Get(int id)
+        public HttpResponseMessage Get(int id)
         {
-            return "value";
+            try
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, AlunoDAO.ListarAlunos());
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
 
         // POST: api/Aluno

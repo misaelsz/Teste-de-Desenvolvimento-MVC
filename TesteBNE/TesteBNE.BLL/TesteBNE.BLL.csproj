@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL\AlunoDAO.cs" />
+    <Compile Include="DAL\DataAcessLayer.cs" />
     <Compile Include="DAL\DisciplinaDAO.cs" />
     <Compile Include="DB\TesteBNE_DB.cs" />
     <Compile Include="DTO\Aluno.cs" />
