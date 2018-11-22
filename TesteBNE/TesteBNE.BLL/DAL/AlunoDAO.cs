@@ -47,7 +47,7 @@ namespace TesteBNE.BLL.DAL
         public static List<Aluno> ListarAlunos()
         {
             List<Aluno> alunos = new List<Aluno>();
-            Aluno aluno = new Aluno();
+            
             try
             {
 
@@ -59,10 +59,12 @@ namespace TesteBNE.BLL.DAL
                         SqlDataReader reader = cmd.ExecuteReader();
                         while (reader.Read())
                         {
+                            Aluno aluno = new Aluno();
                             aluno.ID = reader.GetInt32(0);
                             aluno.Nome_Aluno = reader.GetString(1);
                             alunos.Add(aluno);
                         }
+                        
                     }
                    
                 }

@@ -1,29 +1,23 @@
-﻿function listar(ObjPessoa) {
+﻿document.write(unescape("%3Cscript src='/Servicos/ajax.js' type='text/javascript'%3E%3C/script%3E"));
+
+function listar(ObjPessoa) {
 	console.log(ObjPessoa);
 	$.each(ObjPessoa, function (chave, valor) {
 		//adicionando os objetos dentro da tabela com o comando append
-		$("#listaPessoas tbody").append(
+		$("#listaAlunos tbody").append(
 			"<tr>" +
-			"<td>" + valor.nome + "</td>" +
-			"<td>" + valor.email + "</td>" +
-			"<td>" + valor.telefone + "</td>" +
-			"<td>" + valor.Sexo + "</td>" +
-			"<td>" + valor.idade + "</td>" +
-			"<td>" + valor.Cep + "</td>" +
+			"<td>" + valor.Nome_Aluno + "</td>" +
 			// "<td class='btn-primary'><a href='file:///C:/Users/misaelzeferino/Documents/projetosAulaMarth/aula02Ajax/cadastro.html'><button type='button' onclick='editar(" + JSON.stringify(valor.id) + "); ' id='editar'>Editar</button></a></td>" +
-			"<td><button type='button' onclick='carregarCadastroParaEdicao(" + JSON.stringify(valor.id) + "); ' id='editar'>Editar</button></td>" +
-			"<td><button class='button-excluir' type='button' onclick='excluir(" + JSON.stringify(valor.id) + ");' id='remover'>X</button></td>"
+			"<td><button type='button' onclick='carregarCadastroParaEdicao(" + JSON.stringify(valor.ID) + "); ' id='editar'>Editar</button></td>" +
+			"<td><button class='button-excluir' type='button' onclick='excluir(" + JSON.stringify(valor.ID) + ");' id='remover'>X</button></td>"
 
 		);
 	});
 }
 
-function get(funcao) {
-	$.ajax({
-		url: 'http://localhost:63689/api/Aluno',
-		method: 'GET'
-	}).done(function (data) {
-		funcao(data);
-	});
-}
 
+
+function carregarCadastroParaEdicao(id) {
+
+	window.location = "CadastroAluno?id=" + id;
+}

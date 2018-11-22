@@ -1,9 +1,8 @@
 ﻿//metodo de ediçao
 //metodo que importa outro arquivo js
 
-//document.write(unescape("%3Cscript src='editar.js' type='text/javascript'%3E%3C/script%3E"));
+document.write(unescape("%3Cscript src='Scripts/editarAluno.js' type='text/javascript'%3E%3C/script%3E"));
 document.write(unescape("%3Cscript src='/Servicos/ajax.js' type='text/javascript'%3E%3C/script%3E"));
-document.write(unescape("%3Cscript src='/Scripts/cadastrarAluno.js' type='text/javascript'%3E%3C/script%3E"));
 
 $(document).ready(function () {
 	var valor;
@@ -23,7 +22,7 @@ $(document).ready(function () {
 		var id = parametroDaUrl;
 		console.log("valor do id" + id)
 		//faz a busca no banco de dados, buscando o objeto pelo id, o segundo parametro e uma funcao no caso estou chamando a funçao editar
-		getPorId(id, editar);
+		getPorId(id);
 
 	}
 	else {
@@ -38,9 +37,19 @@ $(document).ready(function () {
 				alert("campos obrigatórios não preenchidos");
 			} else {
 				Pessoa = JSON.stringify(Pessoa);
-				console.log("depois do metodo stringfy: "+ Pessoa);
+				console.log("depois do metodo stringfy: " + Pessoa);
 				postAluno(Pessoa);
 			}
 		});
 	}
-})
+});
+
+function cadastrarAluno() {
+	var aluno = JSON.stringify({
+		Nome_Aluno: $("#txtNomeAluno").val()
+
+
+	});
+	return aluno;
+};
+
