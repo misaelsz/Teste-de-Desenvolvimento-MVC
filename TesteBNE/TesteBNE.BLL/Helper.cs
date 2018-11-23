@@ -11,7 +11,7 @@ namespace TesteBNE.BLL
     {
         public static string ConnectionValue(string name)
         {
-           return ConfigurationManager.ConnectionStrings[name].ConnectionString;
+           return ConfigurationManager.ConnectionStrings[name].ConnectionString.ToString();
         }
     }
 }

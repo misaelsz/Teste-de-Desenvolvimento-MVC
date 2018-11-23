@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -14,8 +15,10 @@ namespace TesteBNE.BLL.DAL
         #region consultas
         //comandos sql
         public const string spListarAlunos = "SELECT * FROM dbo.ALUNOS";
-        public const string spBuscarPorId = "SELECT * FROM dbo.ALUNOS WHERE ID = @id";
+        public const string spBuscarPorId = "SELECT * FROM dbo.ALUNOS WHERE ID = @ID";
         public const string spInsertAluno = "INSERT INTO dbo.Alunos VALUES(@Nome_Aluno)";
+        public const string spUpdateAluno = "UPDATE dbo.Alunos SET Nome_Aluno = @Nome_Aluno WHERE ID = @ID";
+        public const string spDeleteAluno = "DELETE dbo.Alunos WHERE ID = @ID";
         #endregion
         #region Metodos
         public static bool CadastrarAluno(Aluno aluno)
@@ -56,6 +59,7 @@ namespace TesteBNE.BLL.DAL
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand(spListarAlunos, conn))
                     {
+                       
                         SqlDataReader reader = cmd.ExecuteReader();
                         while (reader.Read())
                         {
@@ -77,7 +81,83 @@ namespace TesteBNE.BLL.DAL
             }
         }
         public static Aluno ListarALunoPorId(int id) {
-            
+            try
+            {
+                Aluno aluno = new Aluno();
+                using (SqlConnection conn = new SqlConnection("data source=CQI-DEV-1100\\SQLEXPRESS01;initial catalog=TesteBNE_DB;persist security info=True; Integrated Security = SSPI; "))
+                {
+                    
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(spBuscarPorId, conn))
+                    {
+                        cmd.Parameters.Add(new SqlParameter("ID", id));
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            
+                            aluno.ID = reader.GetInt32(0);
+                            aluno.Nome_Aluno = reader.GetString(1);
+                            
+                        }
+
+                    }
+
+                }
+                return aluno;
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+        }
+
+        public static bool AlterarAluno(int id, Aluno aluno)
+        {
+            try
+            {
+
+                using (SqlConnection conn = new SqlConnection(/*ConfigurationManager.ConnectionStrings["TesteBNE_DB"].ConnectionString*/
+                    "data source=CQI-DEV-1100\\SQLEXPRESS01;initial catalog=TesteBNE_DB;persist security info=True; Integrated Security = SSPI; "
+                    ))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(spUpdateAluno, conn))
+                    {
+                        cmd.Parameters.Add(new SqlParameter("ID", id));
+                        cmd.Parameters.Add(new SqlParameter("Nome_Aluno", aluno.Nome_Aluno));
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+                    
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
+
+        public static bool DeletarAluno(int id) {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection("data source=CQI-DEV-1100\\SQLEXPRESS01;initial catalog=TesteBNE_DB;persist security info=True; Integrated Security = SSPI; "))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(spDeleteAluno, conn))
+                    {
+                        cmd.Parameters.Add(new SqlParameter("ID", id));
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return false;
+            }
         }
 
         #endregion

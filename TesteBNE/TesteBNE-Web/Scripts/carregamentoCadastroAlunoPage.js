@@ -1,7 +1,7 @@
 ﻿//metodo de ediçao
 //metodo que importa outro arquivo js
 
-document.write(unescape("%3Cscript src='Scripts/editarAluno.js' type='text/javascript'%3E%3C/script%3E"));
+//document.write(unescape("%3Cscript src='Scripts/editarAluno.js' type='text/javascript'%3E%3C/script%3E"));
 document.write(unescape("%3Cscript src='/Servicos/ajax.js' type='text/javascript'%3E%3C/script%3E"));
 
 $(document).ready(function () {
@@ -33,7 +33,7 @@ $(document).ready(function () {
 			Pessoa = JSON.parse(Aluno);
 			console.log("nome do cara: " + Pessoa.Nome_Aluno);
 			console.log(Pessoa);
-			if (Pessoa.Nome_Aluno == "") {
+			if (Pessoa.Nome_Aluno === "") {
 				alert("campos obrigatórios não preenchidos");
 			} else {
 				Pessoa = JSON.stringify(Pessoa);

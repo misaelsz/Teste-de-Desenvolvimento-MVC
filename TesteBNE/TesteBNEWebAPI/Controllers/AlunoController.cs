@@ -30,7 +30,7 @@ namespace TesteBNEWebAPI.Controllers
         {
             try
             {
-                return Request.CreateResponse(HttpStatusCode.OK, AlunoDAO.ListarAlunos());
+                return Request.CreateResponse(HttpStatusCode.OK, AlunoDAO.ListarALunoPorId(id));
             }
             catch (Exception ex)
             {
@@ -57,13 +57,34 @@ namespace TesteBNEWebAPI.Controllers
         }
 
         // PUT: api/Aluno/5
-        public void Put(int id, [FromBody]string value)
+        public HttpResponseMessage Put(int id, [FromBody]Aluno aluno)
         {
+            try
+            {
+                bool retorno = AlunoDAO.AlterarAluno(id,aluno);
+                if (retorno == false)
+                    return Request.CreateResponse(HttpStatusCode.BadRequest);
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
 
         // DELETE: api/Aluno/5
-        public void Delete(int id)
+        public HttpResponseMessage Delete(int id)
         {
+            try
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, AlunoDAO.DeletarAluno(id));
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
     }
 }

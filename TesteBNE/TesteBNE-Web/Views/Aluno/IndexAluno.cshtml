@@ -34,8 +34,23 @@
 			<tbody></tbody>
 		</table>
 	</div>
+	<link rel='stylesheet' href='editar.css'>
+	<form class="modal-content animate">
+		<div class="imgcontainer">
+			<span onclick="document.getElementById('confirm').style.display='none'" class="close" title="Close Modal">&times;</span>
+		</div>
+
+		<p style="text-align:center">Tem certeza que quer realmente excluir?</p>
+
+		<div class="container" style="background-color:#f1f1f1">
+			<button type="button" id="btnConfirm" value="sim" class="btn btn-primary">Sim</button>
+			<button type="button" onclick="document.getElementById('confirm').style.display='none'" class="cancelbtn">Cancel</button>
+		</div>
+	</form>
+
 	@section ScriptsListar{
 		<script src="~/Scripts/listarAlunos.js"></script>
-		}
+		<script src="~/Scripts/botaoExcluir.js"></script>
+	}
 </body>
 </html>

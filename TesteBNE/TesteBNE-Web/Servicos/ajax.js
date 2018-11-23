@@ -4,7 +4,7 @@
 //	$.post("http://localhost:63689/api/Aluno", aluno, function () { }, 'json')
 //};
 
-document.write(unescape("%3Cscript src='Scripts/editarAluno.js' type='text/javascript'%3E%3C/script%3E"));
+//document.write(unescape("%3Cscript src='Scripts/editarAluno.js' type='text/javascript'%3E%3C/script%3E"));
 
 function postAluno(pessoa) {
 	$.ajax({
@@ -25,7 +25,7 @@ function postAluno(pessoa) {
 			console.log("pessoa :" + pessoa + "success");
 			console.log("data :" + retorno);
 			console.log(retorno);
-			if (retorno.status == 400) {
+			if (retorno.status === 400) {
 				alert("Usuário já cadastrado!");
 			} else {
 				alert("Algum erro inesperado ocorreu :-(!.");
@@ -73,7 +73,7 @@ function getPorNome(nome, funcao) {
 
 function put(id, pessoa) {
 	$.ajax({
-		url: 'http://localhost:52698/api/pessoa/' + id,
+		url: 'http://localhost:63689/api/Aluno/' + id,
 		method: 'PUT',
 		data: JSON.stringify(pessoa),
 		contentType: 'application/json; charset=UTF-8',
@@ -117,7 +117,7 @@ function editar(resposta) {
 	document.getElementById('txtNomeAluno').value = e.Nome_Aluno;
 
 
-	$('#btnCadastrar').click(function () {
+	$('#bntCadAluno').click(function () {
 
 		e.Nome_Aluno = document.getElementById('txtNomeAluno').value;
 
