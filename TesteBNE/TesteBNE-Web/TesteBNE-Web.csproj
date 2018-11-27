@@ -93,6 +93,7 @@
     <Content Include="Scripts\botaoExcluir.js" />
     <Content Include="Scripts\carregamentoCadastroAlunoPage.js" />
     <Content Include="Scripts\editarAluno.js" />
+    <Content Include="Scripts\excluir.js" />
     <Content Include="Scripts\listarAlunos.js" />
     <Content Include="Servicos\ajax.js" />
     <Content Include="Styles\estilos.css" />

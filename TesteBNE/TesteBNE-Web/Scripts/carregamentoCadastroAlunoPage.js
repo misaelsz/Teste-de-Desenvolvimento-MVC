@@ -1,9 +1,9 @@
 ﻿//metodo de ediçao
 //metodo que importa outro arquivo js
 
-//document.write(unescape("%3Cscript src='Scripts/editarAluno.js' type='text/javascript'%3E%3C/script%3E"));
+document.write(unescape("%3Cscript src='Scripts/botaoExcluir.js' type='text/javascript'%3E%3C/script%3E"));
 document.write(unescape("%3Cscript src='/Servicos/ajax.js' type='text/javascript'%3E%3C/script%3E"));
-
+document.write(unescape("%3Cscript src='/Scripts/excluir.js' type='text/javascript'%3E%3C/script%3E"));
 $(document).ready(function () {
 	var valor;
 	var valorEscolhido;
