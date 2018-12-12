@@ -8,8 +8,8 @@ function listar(ObjPessoa) {
 			"<tr>" +
 			"<td>" + valor.Nome_Aluno + "</td>" +
 			// "<td class='btn-primary'><a href='file:///C:/Users/misaelzeferino/Documents/projetosAulaMarth/aula02Ajax/cadastro.html'><button type='button' onclick='editar(" + JSON.stringify(valor.id) + "); ' id='editar'>Editar</button></a></td>" +
-			"<td><button type='button' onclick='carregarCadastroParaEdicao(" + JSON.stringify(valor.ID) + "); ' id='editar'>Editar</button></td>" +
-			"<td><button class='button-excluir' type='button' onclick='excluir(" + JSON.stringify(valor.ID) + ");' id='remover'>X</button></td>"
+			"<td><button type='button' onclick='carregarCadastroParaEdicao(" + JSON.stringify(valor.ID) + "); ' id='editar' class='btn btn-warning'>Editar</button></td>" +
+			"<td><button class='btn btn-danger' type='button' onclick='excluir(" + JSON.stringify(valor.ID) + ");' id='remover' data-toggle='modal' data-target='#ExcluirConfirm'>X</button></td>"
 
 		);
 	});

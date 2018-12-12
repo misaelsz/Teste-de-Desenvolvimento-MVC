@@ -13,5 +13,8 @@ namespace TesteBNE_Web.Controllers
         {
             return View();
         }
+        public ActionResult CadastroDisciplina() {
+            return View();
+        }
     }
 }

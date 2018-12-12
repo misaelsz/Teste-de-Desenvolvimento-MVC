@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
 	console.log("carregando...");
-	$("#confirm").load("/Shared/ModalExcluir.html");
+	//$("#confirm").load("Modal/ModalExcluir.cshtml");
 	// Get the modal
 	var modal = document.getElementById('confirm');
 

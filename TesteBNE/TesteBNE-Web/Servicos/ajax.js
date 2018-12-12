@@ -87,14 +87,14 @@ function put(id, pessoa) {
 
 function Delete(id) {
 	$.ajax({
-		url: 'http://localhost:52698/api/pessoa/' + id,
+		url: 'http://localhost:63689/api/Aluno/' + id,
 		method: 'DELETE',
 		contentType: 'application/json; charset=UTF-8',
 	}).then(function (e) {
 		$("#remover").parent().parent().parent().remove();
 		var ObjPessoa = null;
 		$.ajax({
-			url: 'http://localhost:52698/api/pessoa',
+			url: 'http://localhost:63689/api/Aluno',
 			method: 'GET'
 		}).done(function (data) {
 			ObjPessoa = [];
@@ -103,7 +103,7 @@ function Delete(id) {
 
 			console.log("objJSON : " + ObjPessoa);
 			var url = location.href;
-			url = url.split("/")[0] + "/index.html";
+			url = url.split("/")[0] + "/Aluno/IndexAluno";
 			window.location.assign(url);
 		});
 	})

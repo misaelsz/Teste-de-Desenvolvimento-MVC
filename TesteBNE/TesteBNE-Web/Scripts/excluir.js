@@ -1,8 +1,8 @@
-﻿
+﻿document.write(unescape("%3Cscript src='/Servicos/ajax.js' type='text/javascript'%3E%3C/script%3E"));
 var btnConfirm = "";
 function excluir(id) {
 
-	document.getElementById('confirm').style.display = 'block'; " style=width:auto";
+	document.getElementById('ExcluirConfirm').style.display = 'block'; " style=width:auto";
 	console.log("Guid" + id);
 
 	$("#btnConfirm").click(function () {
@@ -15,7 +15,7 @@ function excluir(id) {
 			//faz a exclusao via ajax
 			Delete(id);
 		}
-		document.getElementById('confirm').style.display = 'none';
+		document.getElementById('ExcluirConfirm').style.display = 'none';
 	})
 
 }

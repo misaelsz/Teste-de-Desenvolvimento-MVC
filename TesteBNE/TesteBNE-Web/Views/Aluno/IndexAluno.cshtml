@@ -10,30 +10,60 @@
 	<title></title>
 </head>
 <body>
-	<div>
-		<h1>Lista de alunos</h1>
+	<div class="container">
+		<div>
+			<h1>Lista de alunos</h1>
+		</div>
+		<br />
+		<br />
+			@Html.ActionLink("Cadastrar novo Aluno", "CadastroAluno", "Aluno", null, new { @class="btn btn-primary"})
+
+		<br />
+		<br />
+		<div>
+			<button id="btnListarAlunos" class="btn btn-success" onclick="get(listar);">Listar Alunos Cadastrados</button>
+		</div>
+		<br />
+		<div>
+			<table class="table" id="listaAlunos">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">Nome</th>
+
+						<th scope="col">Editar</th>
+						<th scope="col">Excluir</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
+
+		@*<div id='confirm' class="exclusao">*@
+
+		<div class="modal" tabindex="-1" role="dialog" id="ExcluirConfirm">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<form class="modal-content animate">
+						<div class="imgcontainer">
+							<span onclick="document.getElementById('ExcluirConfirm').style.display='none'" class="close" title="Close Modal">&times;</span>
+						</div>
+
+						<p style="text-align:center">Tem certeza que quer realmente excluir?</p>
+
+						<div class="container" style="background-color:#f1f1f1">
+							<button type="button" id="btnConfirm" value="sim" class="btn btn-primary">Sim</button>
+							<button type="button" onclick="document.getElementById('ExcluirConfirm').style.display='none'" class="cancelbtn">Cancel</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
 
-	<button id="btnListarAlunos" class="button-listar" onclick="get(listar);">Listar Alunos Cadastrados</button>
 
-	<div>
-		@Html.ActionLink("Cadastrar novo Aluno", "CadastroAluno", "Aluno", null, null)
-	</div>
 
-	<div>
-		<table class="table" id="listaAlunos">
-			<thead class="thead-dark">
-				<tr>
-					<th scope="col">ID</th>
-					<th scope="col">Nome</th>
 
-					<th scope="col">Editar</th>
-					<th scope="col">Excluir</th>
-				</tr>
-			</thead>
-			<tbody></tbody>
-		</table>
-	</div>
+	@*</div>*@
 
 	@section ScriptsListar{
 		<script src="~/Scripts/listarAlunos.js"></script>

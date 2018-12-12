@@ -91,13 +91,13 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Scripts\botaoExcluir.js" />
+    <Content Include="Scripts\cadastrarDisciplina.js" />
     <Content Include="Scripts\carregamentoCadastroAlunoPage.js" />
     <Content Include="Scripts\editarAluno.js" />
     <Content Include="Scripts\excluir.js" />
     <Content Include="Scripts\listarAlunos.js" />
     <Content Include="Servicos\ajax.js" />
     <Content Include="Styles\estilos.css" />
-    <Content Include="Views\Shared\ModalExcluir.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +118,7 @@
     <Content Include="Views\Disciplina\IndexDisciplina.cshtml" />
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
     <Content Include="Views\Aluno\CadastroAluno.cshtml" />
+    <Content Include="Views\Disciplina\CadastroDisciplina.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -127,6 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Views\Aluno\Modal\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
