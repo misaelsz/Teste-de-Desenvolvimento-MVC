@@ -56,26 +56,15 @@
     <Compile Include="DAL\AlunoDAO.cs" />
     <Compile Include="DAL\DataAcessLayer.cs" />
     <Compile Include="DAL\DisciplinaDAO.cs" />
-    <Compile Include="DB\TesteBNE_DB.cs" />
     <Compile Include="DTO\Aluno.cs" />
     <Compile Include="DTO\Disciplina.cs" />
     <Compile Include="Helper.cs" />
-    <Compile Include="Migrations\201811171643335_iniciar banco.cs" />
-    <Compile Include="Migrations\201811171643335_iniciar banco.Designer.cs">
-      <DependentUpon>201811171643335_iniciar banco.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201811171643335_iniciar banco.resx">
-      <DependentUpon>201811171643335_iniciar banco.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

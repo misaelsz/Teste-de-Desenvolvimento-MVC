@@ -36,6 +36,33 @@ function postAluno(pessoa) {
 	});
 }
 
+function postDisciplina(Disciplina) {
+	$.ajax({
+
+		url: 'http://localhost:63689/api/Disciplina',
+		data: Disciplina,
+		type: 'POST',
+		contentType: 'application/json; charset=UTF-8',
+		success: (function (retorno) {
+			console.log("pessoa :" + Disciplina + "success");
+			console.log("data :" + retorno);
+			alert("Cadastro efetuado com sucesso.");
+			var url = location.href;
+			url = url.split("/")[0] + "/Disciplina/IndexDisciplina";
+			window.location.assign(url);
+		}),
+		error: (function (retorno) {
+			console.log("pessoa :" + Disciplina + "success");
+			console.log("data :" + retorno);
+			console.log(retorno);
+				alert("Algum erro inesperado ocorreu :-(!.");
+			})
+
+		
+
+	});
+}
+
 function get(funcao) {
 	$.ajax({
 		url: 'http://localhost:63689/api/Aluno',
@@ -44,6 +71,18 @@ function get(funcao) {
 		funcao(data);
 	});
 }
+
+function getDisciplinas(funcao) {
+	$.ajax({
+		url: 'http://localhost:63689/api/Disciplina',
+		method: 'GET'
+	}).done(function (data) {
+		console.log("retono: " + data);
+		console.log("...");
+		funcao(data);
+	});
+}
+
 
 function getPorId(id) {
 	$.ajax({
@@ -56,6 +95,19 @@ function getPorId(id) {
 	})
 
 }
+
+function getDisciplinaPorId(id) {
+	$.ajax({
+		url: 'http://localhost:63689/api/Disciplina/' + id,
+		method: 'GET',
+		contentType: 'application/json; charset=UTF-8',
+	}).then(function (resposta) {
+		console.log("dentro da requisicao" + resposta);
+		editar(resposta);
+	})
+
+}
+
 
 function getPorNome(nome, funcao) {
 	console.log("O nome e:" + nome);
@@ -80,7 +132,7 @@ function put(id, pessoa) {
 	}).then(function (a) {
 		alert("sucesso");
 		console.log("retorno put" + a);
-		window.location.assign("./index.html");
+		window.location.assign("./IndexAluno");
 	})
 }
 

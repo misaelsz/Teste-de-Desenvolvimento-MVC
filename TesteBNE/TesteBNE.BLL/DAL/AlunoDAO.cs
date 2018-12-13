@@ -15,10 +15,10 @@ namespace TesteBNE.BLL.DAL
         #region consultas
         //comandos sql
         public const string spListarAlunos = "SELECT * FROM dbo.ALUNOS";
-        public const string spBuscarPorId = "SELECT * FROM dbo.ALUNOS WHERE ID = @ID";
+        public const string spBuscarPorId = "SELECT * FROM dbo.ALUNOS WHERE ID_ALUNO = @ID_ALUNO";
         public const string spInsertAluno = "INSERT INTO dbo.Alunos VALUES(@Nome_Aluno)";
-        public const string spUpdateAluno = "UPDATE dbo.Alunos SET Nome_Aluno = @Nome_Aluno WHERE ID = @ID";
-        public const string spDeleteAluno = "DELETE dbo.Alunos WHERE ID = @ID";
+        public const string spUpdateAluno = "UPDATE dbo.Alunos SET Nome_Aluno = @Nome_Aluno WHERE ID_ALUNO = @ID_ALUNO";
+        public const string spDeleteAluno = "DELETE dbo.Alunos WHERE ID_ALUNO = @ID_ALUNO";
         #endregion
         #region Metodos
         public static bool CadastrarAluno(Aluno aluno)
@@ -90,7 +90,7 @@ namespace TesteBNE.BLL.DAL
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand(spBuscarPorId, conn))
                     {
-                        cmd.Parameters.Add(new SqlParameter("ID", id));
+                        cmd.Parameters.Add(new SqlParameter("ID_ALUNO", id));
                         SqlDataReader reader = cmd.ExecuteReader();
                         while (reader.Read())
                         {
@@ -124,7 +124,7 @@ namespace TesteBNE.BLL.DAL
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand(spUpdateAluno, conn))
                     {
-                        cmd.Parameters.Add(new SqlParameter("ID", id));
+                        cmd.Parameters.Add(new SqlParameter("ID_ALUNO", id));
                         cmd.Parameters.Add(new SqlParameter("Nome_Aluno", aluno.Nome_Aluno));
                         cmd.ExecuteNonQuery();
                         return true;
@@ -147,7 +147,7 @@ namespace TesteBNE.BLL.DAL
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand(spDeleteAluno, conn))
                     {
-                        cmd.Parameters.Add(new SqlParameter("ID", id));
+                        cmd.Parameters.Add(new SqlParameter("ID_ALUNO", id));
                         cmd.ExecuteNonQuery();
                         return true;
                     }

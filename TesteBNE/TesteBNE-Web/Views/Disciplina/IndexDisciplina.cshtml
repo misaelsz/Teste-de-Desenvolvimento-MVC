@@ -1,19 +1,56 @@
 ﻿@{
 	Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
+<div class="container">
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
+	<div>
 		<h1>Lista de disciplinas</h1>
-    </div>
-	@Html.ActionLink("Cadastrar nova disciplina", "CadastroDisciplina", "Disciplina", null, new { @class="btn btn-primary"})
+	</div>
+	@Html.ActionLink("Cadastrar nova disciplina", "CadastroDisciplina", "Disciplina", null, new { @class = "btn btn-primary" })
+	<br />
+	<br />
+	<div>
+		<button id="btnListarDisciplinas" class="btn btn-success" onclick="getDisciplinas(listarDisciplinas);">Listar Disciplinas Cadastrados</button>
+	</div>
+	<br />
+	<div>
+		<table class="table" id="listaDisciplinas">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Nome</th>
 
-</body>
-</html>
+					<th scope="col">Editar</th>
+					<th scope="col">Excluir</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+	</div>
+
+	@*<div id='confirm' class="exclusao">*@
+
+	<div class="modal" tabindex="-1" role="dialog" id="ExcluirConfirm">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<form class="modal-content animate">
+					<div class="imgcontainer">
+						<span onclick="document.getElementById('ExcluirConfirm').style.display='none'" class="close" title="Close Modal">&times;</span>
+					</div>
+
+					<p style="text-align:center">Tem certeza que quer realmente excluir?</p>
+
+					<div class="container" style="background-color:#f1f1f1">
+						<button type="button" id="btnConfirmDisciplina" value="sim" class="btn btn-primary">Sim</button>
+						<button type="button" onclick="document.getElementById('ExcluirConfirm').style.display='none'" class="cancelbtn">Cancel</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</div>
+@section ScriptsListar{
+	<script src="~/Scripts/listarDisciplinas.js"></script>
+	<script src="~/Scripts/botaoExcluir.js"></script>
+	<script src="~/Scripts/excluir.js"></script>
+}

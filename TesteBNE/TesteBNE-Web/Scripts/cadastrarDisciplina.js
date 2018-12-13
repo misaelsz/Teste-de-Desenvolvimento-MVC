@@ -1,7 +1,7 @@
 ﻿
-document.write(unescape("%3Cscript src='Scripts/botaoExcluir.js' type='text/javascript'%3E%3C/script%3E"));
+//document.write(unescape("%3Cscript src='Scripts/botaoExcluir.js' type='text/javascript'%3E%3C/script%3E"));
 document.write(unescape("%3Cscript src='/Servicos/ajax.js' type='text/javascript'%3E%3C/script%3E"));
-document.write(unescape("%3Cscript src='/Scripts/excluir.js' type='text/javascript'%3E%3C/script%3E"));
+//document.write(unescape("%3Cscript src='/Scripts/excluir.js' type='text/javascript'%3E%3C/script%3E"));
 $(document).ready(function () {
 	var valor;
 	var valorEscolhido;
@@ -20,33 +20,33 @@ $(document).ready(function () {
 		var id = parametroDaUrl;
 		console.log("valor do id" + id)
 		//faz a busca no banco de dados, buscando o objeto pelo id, o segundo parametro e uma funcao no caso estou chamando a funçao editar
-		getPorId(id);
+		getDisciplinaPorId(id);
 
 	}
 	else {
-		$("#bntCadAluno").click(function () {
+		$("#bntCadDisciplina").click(function () {
 
-			var Aluno = cadastrarAluno();
-			console.log("Objeto a ser inserido no banco :" + Aluno)
-			Pessoa = JSON.parse(Aluno);
-			console.log("nome do cara: " + Pessoa.Nome_Aluno);
-			console.log(Pessoa);
-			if (Pessoa.Nome_Aluno === "") {
+			var Disciplina = cadastrarDisciplina();
+			console.log("Objeto a ser inserido no banco :" + Disciplina)
+			disciplina = JSON.parse(Disciplina);
+			console.log("nome do cara: " + disciplina.Nome_Disciplina);
+			console.log(disciplina);
+			if (disciplina.Nome_Disciplina === "") {
 				alert("campos obrigatórios não preenchidos");
 			} else {
-				Pessoa = JSON.stringify(Pessoa);
-				console.log("depois do metodo stringfy: " + Pessoa);
-				postAluno(Pessoa);
+				Disciplina = JSON.stringify(disciplina);
+				console.log("depois do metodo stringfy: " + Disciplina);
+				postDisciplina(Disciplina);
 			}
 		});
 	}
 });
 
-function cadastrarAluno() {
-	var aluno = JSON.stringify({
-		Nome_Aluno: $("#txtNomeAluno").val()
+function cadastrarDisciplina() {
+	var disciplina = JSON.stringify({
+		Nome_Disciplina: $("#txtNomeDisciplina").val()
 
 
 	});
-	return aluno;
+	return disciplina;
 };

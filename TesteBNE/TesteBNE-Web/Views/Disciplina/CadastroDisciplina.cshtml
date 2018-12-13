@@ -1,29 +1,25 @@
 ﻿@{
-	Layout = null;
+	Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
+<br />
 
-<!DOCTYPE html>
+<div class="container">
+	<h2>Cadastre uma nova disciplina! </h2>
+	<form id="formCadDisciplina" method="post">
 
-<html>
-<head>
-	<meta name="viewport" content="width=device-width" />
-	<title></title>
-</head>
-<body>
-	<br />
+		<div class="form-group">
 
-	<div class="container">
-		<h2>Cadastre uma nova disciplina! </h2>
-		<form id="formCadDisciplina" method="post">
+			<input type="text" id="txtNomeDisciplina" class="form-control" placeholder="Digite o nome da disciplina..." />
+			<br />
+			<button type="button" id="bntCadDisciplina" class="btn btn-primary">Cadastrar</button>
+		</div>
+	</form>
 
-			<div class="form-group">
+</div>
 
-				<input type="text" id="txtNomeDisciplina" class="form-control" placeholder="Digite o nome da disciplina..." />
-				<br />
-				<button type="button" id="bntCadDsiciplina" class="btn btn-primary">Cadastrar</button>
-			</div>
-		</form>
+@section MeusScripts{
 
-	</div>
-</body>
-</html>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<script src="~/Scripts/cadastrarDisciplina.js"></script>
+}

@@ -16,7 +16,7 @@ namespace TesteBNEWebAPI.Controllers
         {
             try
             {
-                return Request.CreateResponse(HttpStatusCode.OK, AlunoDAO.ListarAlunos());
+                return Request.CreateResponse(HttpStatusCode.OK, DisciplinaDAO.ListarDisciplinas());
             }
             catch (Exception ex)
             {

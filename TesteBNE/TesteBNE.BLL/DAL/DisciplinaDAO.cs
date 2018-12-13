@@ -14,10 +14,10 @@ namespace TesteBNE.BLL.DAL
         #region consultas
         //comandos sql
         public const string spListarDisciplinas = "SELECT * FROM dbo.Disciplinas";
-        public const string spBuscarPorId = "SELECT * FROM dbo.Disciplinas WHERE ID = @ID";
-        public const string spInsertDisciplina = "INSERT INTO dbo.Disciplinas VALUES(@Nome_Discilpina)";
-        public const string spUpdateDisciplina = "UPDATE dbo.Disciplinas SET Nome_Disciplina = @Nome_Disciplina WHERE ID = @ID";
-        public const string spDeleteDisciplina = "DELETE dbo.Disciplinas WHERE ID = @ID";
+        public const string spBuscarPorId = "SELECT * FROM dbo.Disciplinas WHERE ID_DISCIPLINA = @ID_DISCIPLINA";
+        public const string spInsertDisciplina = "INSERT INTO dbo.DISCIPLINAS(NOME_DISCIPLINA, ID_ALUNO) VALUES(@Nome_disciplina, NULL);";
+        public const string spUpdateDisciplina = "UPDATE dbo.Disciplinas SET NOME_DISCIPLINA = @Nome_Disciplina WHERE ID_DISCIPLINA = @ID_DISCIPLINA";
+        public const string spDeleteDisciplina = "DELETE dbo.Disciplinas WHERE ID_DISCIPLINA = @ID_DISCIPLINA";
         #endregion
         #region Metodos
         public static bool CadastrarDisciplina(Disciplina disciplina)
@@ -32,7 +32,8 @@ namespace TesteBNE.BLL.DAL
                 {
                     using (SqlCommand command = new SqlCommand(spInsertDisciplina, conn))
                     {
-                        command.Parameters.Add(new SqlParameter("Nome_Aluno", disciplina.Nome_Disciplina));
+
+                        command.Parameters.Add(new SqlParameter("Nome_Disciplina", disciplina.Nome_Disciplina));
                         command.ExecuteNonQuery();
                         return true;
                     }
@@ -46,9 +47,9 @@ namespace TesteBNE.BLL.DAL
 
         }
 
-        public static List<Aluno> ListarDisciplina()
+        public static List<Disciplina> ListarDisciplinas()
         {
-            List<Aluno> alunos = new List<Aluno>();
+            List<Disciplina> disciplinas = new List<Disciplina>();
 
             try
             {
@@ -56,22 +57,23 @@ namespace TesteBNE.BLL.DAL
                 using (SqlConnection conn = new SqlConnection("data source=CQI-DEV-1100\\SQLEXPRESS01;initial catalog=TesteBNE_DB;persist security info=True; Integrated Security = SSPI; "))
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(spListarAlunos, conn))
+                    using (SqlCommand cmd = new SqlCommand(spListarDisciplinas, conn))
                     {
 
                         SqlDataReader reader = cmd.ExecuteReader();
                         while (reader.Read())
                         {
-                            Aluno aluno = new Aluno();
-                            aluno.ID = reader.GetInt32(0);
-                            aluno.Nome_Aluno = reader.GetString(1);
-                            alunos.Add(aluno);
+                            Disciplina disciplina = new Disciplina();
+                            disciplina.ID = reader.GetInt32(0);
+                            disciplina.Nome_Disciplina = reader.GetString(1);
+                           // disciplina.ID_Aluno = reader.GetInt32(2);
+                            disciplinas.Add(disciplina);
                         }
 
                     }
 
                 }
-                return alunos;
+                return disciplinas;
             }
             catch (Exception ex)
             {
@@ -122,7 +124,7 @@ namespace TesteBNE.BLL.DAL
                     ))
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(spUpdateAluno, conn))
+                    using (SqlCommand cmd = new SqlCommand(spUpdateDisciplina, conn))
                     {
                         cmd.Parameters.Add(new SqlParameter("ID", id));
                         cmd.Parameters.Add(new SqlParameter("Nome_Aluno", aluno.Nome_Aluno));
@@ -146,7 +148,7 @@ namespace TesteBNE.BLL.DAL
                 using (SqlConnection conn = new SqlConnection("data source=CQI-DEV-1100\\SQLEXPRESS01;initial catalog=TesteBNE_DB;persist security info=True; Integrated Security = SSPI; "))
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(spDeleteAluno, conn))
+                    using (SqlCommand cmd = new SqlCommand(spDeleteDisciplina, conn))
                     {
                         cmd.Parameters.Add(new SqlParameter("ID", id));
                         cmd.ExecuteNonQuery();

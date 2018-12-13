@@ -14,5 +14,6 @@ namespace TesteBNE.BLL.DTO
         [Key]
         public int ID { get; set; }
         public String Nome_Disciplina { get; set; }
+        public int? ID_Aluno { get; set; }
     }
 }

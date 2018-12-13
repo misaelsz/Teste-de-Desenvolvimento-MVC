@@ -16,6 +16,19 @@ function excluir(id) {
 			Delete(id);
 		}
 		document.getElementById('ExcluirConfirm').style.display = 'none';
+	});
+	$("#btnConfirmDisciplina").click(function () {
+		btnConfirm = "sim";
+		console.log("dentro do click" + btnConfirm);
+
+
+		if (btnConfirm === 'sim') {
+			console.log("dentro do if:" + btnConfirm);
+			//faz a exclusao via ajax
+			DeleteDisciplina(id);
+		}
+		document.getElementById('ExcluirConfirm').style.display = 'none';
 	})
+
 
 }
