@@ -97,6 +97,7 @@
     <Content Include="Scripts\excluir.js" />
     <Content Include="Scripts\listarAlunos.js" />
     <Content Include="Scripts\listarDisciplinas.js" />
+    <Content Include="Scripts\listarDisciplinasParaVincular.js" />
     <Content Include="Servicos\ajax.js" />
     <Content Include="Styles\estilos.css" />
     <Content Include="Web.config" />
@@ -120,6 +121,7 @@
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
     <Content Include="Views\Aluno\CadastroAluno.cshtml" />
     <Content Include="Views\Disciplina\CadastroDisciplina.cshtml" />
+    <Content Include="Views\Disciplina\AdicionarDisciplina.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

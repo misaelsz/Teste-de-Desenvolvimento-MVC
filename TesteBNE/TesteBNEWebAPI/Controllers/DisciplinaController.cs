@@ -9,6 +9,7 @@ using TesteBNE.BLL.DTO;
 
 namespace TesteBNEWebAPI.Controllers
 {
+    [RoutePrefix("api/Disciplina")]
     public class DisciplinaController : ApiController
     {
         // GET: api/Aluno
@@ -30,7 +31,20 @@ namespace TesteBNEWebAPI.Controllers
         {
             try
             {
-                return Request.CreateResponse(HttpStatusCode.OK, AlunoDAO.ListarALunoPorId(id));
+                return Request.CreateResponse(HttpStatusCode.OK, DisciplinaDAO.ListarDisciplinaPorId(id));
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
+        }
+        //GET: 
+        [Route("Vincular/{id}")]
+        public HttpResponseMessage GetNaoRelacionadas(int id) {
+            try
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, DisciplinaDAO.ListarDisciplinasPorAluno(id));
             }
             catch (Exception ex)
             {
@@ -57,11 +71,11 @@ namespace TesteBNEWebAPI.Controllers
         }
 
         // PUT: api/Aluno/5
-        public HttpResponseMessage Put(int id, [FromBody]Aluno aluno)
+        public HttpResponseMessage Put(int id, [FromBody]Disciplina disciplina)
         {
             try
             {
-                bool retorno = AlunoDAO.AlterarAluno(id, aluno);
+                bool retorno = DisciplinaDAO.AlterarDisciplina(id, disciplina);
                 if (retorno == false)
                     return Request.CreateResponse(HttpStatusCode.BadRequest);
 
@@ -78,7 +92,7 @@ namespace TesteBNEWebAPI.Controllers
         {
             try
             {
-                return Request.CreateResponse(HttpStatusCode.OK, AlunoDAO.DeletarAluno(id));
+                return Request.CreateResponse(HttpStatusCode.OK, DisciplinaDAO.DeletarDisciplina(id));
             }
             catch (Exception ex)
             {

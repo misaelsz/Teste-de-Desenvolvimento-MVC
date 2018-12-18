@@ -84,6 +84,8 @@ function getDisciplinas(funcao) {
 }
 
 
+
+
 function getPorId(id) {
 	$.ajax({
 		url: 'http://localhost:63689/api/Aluno/' + id,
@@ -103,25 +105,11 @@ function getDisciplinaPorId(id) {
 		contentType: 'application/json; charset=UTF-8',
 	}).then(function (resposta) {
 		console.log("dentro da requisicao" + resposta);
-		editar(resposta);
+		editarDisciplina(resposta);
 	})
 
 }
 
-
-function getPorNome(nome, funcao) {
-	console.log("O nome e:" + nome);
-	JSON.stringify(nome);
-	console.log(nome);
-	$.ajax({
-		url: 'http://localhost:52698/api/pessoa/?nome=' + nome,
-		method: 'GET',
-		contentType: 'application/json; charset=UTF-8',
-	}).then(function (a) {
-		console.log("retorno do get por nome: " + a)
-		funcao(a);
-	})
-}
 
 function put(id, pessoa) {
 	$.ajax({
@@ -133,6 +121,22 @@ function put(id, pessoa) {
 		alert("sucesso");
 		console.log("retorno put" + a);
 		window.location.assign("./IndexAluno");
+	})
+}
+
+function putDisciplina(id, disciplina) {
+	console.log("Dentro da requisição\n" +
+		"valor do id: " + id
+		+ "Disciplina: " + JSON.stringify(disciplina));
+	$.ajax({
+		url: 'http://localhost:63689/api/Disciplina/' + id,
+		method: 'PUT',
+		data: JSON.stringify(disciplina),
+		contentType: 'application/json; charset=UTF-8',
+	}).then(function (a) {
+		alert("sucesso");
+		console.log("retorno put" + a);
+		window.location.assign("./IndexDisciplina");
 	})
 }
 
@@ -161,6 +165,30 @@ function Delete(id) {
 	})
 }
 
+function DeleteDisciplina(id) {
+	$.ajax({
+		url: 'http://localhost:63689/api/Disciplina/' + id,
+		method: 'DELETE',
+		contentType: 'application/json; charset=UTF-8',
+	}).then(function (e) {
+		$("#remover").parent().parent().parent().remove();
+		var ObjPessoa = null;
+		$.ajax({
+			url: 'http://localhost:63689/api/Disciplina',
+			method: 'GET'
+		}).done(function (data) {
+			ObjPessoa = [];
+			ObjPessoa = data;
+			console.log("data Json" + JSON.stringify(data));
+
+			console.log("objJSON : " + ObjPessoa);
+			var url = location.href;
+			url = url.split("/")[0] + "/Disciplina/IndexDisciplina";
+			window.location.assign(url);
+		});
+	})
+}
+
 function editar(resposta) {
 	var e = resposta;
 	console.log("retorno do callback" + e);
@@ -178,5 +206,25 @@ function editar(resposta) {
 		var id = e.ID;
 		var pessoa = e;
 		put(id, pessoa);
+	});
+}
+
+function editarDisciplina(resposta) {
+	var e = resposta;
+	console.log("retorno do callback" + e);
+	console.log("objeto de retorno stringfy: " + JSON.stringify(e));
+	console.log("retorno: " + JSON.stringify(e.Nome_Disciplina));
+	document.getElementById('txtNomeDisciplina').value = e.Nome_Disciplina;
+
+
+	$('#bntCadDisciplina').click(function () {
+
+		e.Nome_Disciplina = document.getElementById('txtNomeDisciplina').value;
+
+		console.log("valores do objeto e" + e.Nome_Disciplina);
+
+		var id = e.ID;
+		var disciplina = e;
+		putDisciplina(id, disciplina);
 	});
 }
