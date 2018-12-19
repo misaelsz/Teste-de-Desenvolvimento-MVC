@@ -4,8 +4,6 @@
 //	$.post("http://localhost:63689/api/Aluno", aluno, function () { }, 'json')
 //};
 
-//document.write(unescape("%3Cscript src='Scripts/editarAluno.js' type='text/javascript'%3E%3C/script%3E"));
-
 function postAluno(pessoa) {
 	$.ajax({
 
@@ -84,7 +82,18 @@ function getDisciplinas(funcao) {
 }
 
 
+function getDisciplinasPorAluno() {
+	
+	$.ajax({
+		url: 'http://localhost:63689/api/Disciplina/Vincular/' + location.href.split("/")[5],
+		method: 'GET'
+	}).done(function (data) {
+		console.log("retono: " + JSON.stringify(data));
+		console.log("...");
 
+		listarParaVinculo(data);
+	});
+}
 
 function getPorId(id) {
 	$.ajax({
@@ -98,16 +107,33 @@ function getPorId(id) {
 
 }
 
-function getDisciplinaPorId(id) {
+function retornaDisciplinaPorId(id) {
+	var disciplina;
 	$.ajax({
 		url: 'http://localhost:63689/api/Disciplina/' + id,
 		method: 'GET',
 		contentType: 'application/json; charset=UTF-8',
+		async: false
+	}).then(function (resposta) {
+		console.log("dentro da requisicao" + resposta);
+		disciplina = retornaValor(resposta);
+	});
+	return disciplina;
+}
+
+function getDisciplinaPorId(id) {
+	var disciplina;
+	$.ajax({
+		url: 'http://localhost:63689/api/Disciplina/' + id,
+		method: 'GET',
+		contentType: 'application/json; charset=UTF-8',
+		async: false
 	}).then(function (resposta) {
 		console.log("dentro da requisicao" + resposta);
 		editarDisciplina(resposta);
-	})
-
+		disciplina = retornaValor(resposta);
+		});
+	return disciplina;
 }
 
 
@@ -131,6 +157,7 @@ function putDisciplina(id, disciplina) {
 	$.ajax({
 		url: 'http://localhost:63689/api/Disciplina/' + id,
 		method: 'PUT',
+		async:false,
 		data: JSON.stringify(disciplina),
 		contentType: 'application/json; charset=UTF-8',
 	}).then(function (a) {
@@ -228,3 +255,24 @@ function editarDisciplina(resposta) {
 		putDisciplina(id, disciplina);
 	});
 }
+
+function listarParaVinculo(ObjPessoa) {
+	$.each(ObjPessoa, function (chave, valor) {
+		$("#listVincular").append(
+			"<tr>" +
+			"<td>" + valor.Nome_Disciplina + "</td>" +
+			"<td><button type='button' onclick='vincular(" + JSON.stringify(valor.ID) + ")'; class='btn btn-warning'>Vincular</button></td>"
+		);
+	});
+}
+
+function AbreAdicionar(id) {
+	var url = location.href;
+	url = url.split("/")[0] + "/Disciplina/AdicionarDisciplina/" +id;
+	window.location.assign(url);
+}
+
+function retornaValor(dado) {
+	return dado;
+}
+

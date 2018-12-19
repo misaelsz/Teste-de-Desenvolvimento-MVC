@@ -17,7 +17,7 @@ namespace TesteBNE.BLL.DAL
         public const string spBuscarPorId = "SELECT * FROM dbo.Disciplinas WHERE ID_DISCIPLINA = @ID_DISCIPLINA";
         public const string spBuscarPorAluno = "SELECT * FROM dbo.DISCIPLINAS WHERE ID_ALUNO IS NULL OR ID_ALUNO <> @ID_ALUNO";
         public const string spInsertDisciplina = "INSERT INTO dbo.DISCIPLINAS(NOME_DISCIPLINA, ID_ALUNO) VALUES(@Nome_disciplina, NULL);";
-        public const string spUpdateDisciplina = "UPDATE dbo.Disciplinas SET NOME_DISCIPLINA = @Nome_Disciplina WHERE ID_DISCIPLINA = @ID_DISCIPLINA";
+        public const string spUpdateDisciplina = "UPDATE dbo.Disciplinas SET NOME_DISCIPLINA = @Nome_Disciplina, ID_ALUNO = @ID_ALUNO WHERE ID_DISCIPLINA = @ID_DISCIPLINA";
         public const string spDeleteDisciplina = "DELETE dbo.Disciplinas WHERE ID_DISCIPLINA = @ID_DISCIPLINA";
         #endregion
         #region Metodos
@@ -120,7 +120,7 @@ namespace TesteBNE.BLL.DAL
             List<Disciplina> disciplinas = new List<Disciplina>();
             try
             {
-                Disciplina disciplina = new Disciplina();
+               
                 using (SqlConnection conn = new SqlConnection("data source=CQI-DEV-1100\\SQLEXPRESS01;initial catalog=TesteBNE_DB;persist security info=True; Integrated Security = SSPI; "))
                 {
 
@@ -131,7 +131,7 @@ namespace TesteBNE.BLL.DAL
                         SqlDataReader reader = cmd.ExecuteReader();
                         while (reader.Read())
                         {
-
+                            Disciplina disciplina = new Disciplina();
                             disciplina.ID = reader.GetInt32(0);
                             disciplina.Nome_Disciplina = reader.GetString(1);
                             if (!reader.IsDBNull(2))
@@ -166,6 +166,7 @@ namespace TesteBNE.BLL.DAL
                     {
                         cmd.Parameters.Add(new SqlParameter("ID_DISCIPLINA", id));
                         cmd.Parameters.Add(new SqlParameter("Nome_Disciplina", disciplina.Nome_Disciplina));
+                        cmd.Parameters.Add(new SqlParameter("ID_ALUNO", disciplina.ID_Aluno));
                         cmd.ExecuteNonQuery();
                         return true;
                     }

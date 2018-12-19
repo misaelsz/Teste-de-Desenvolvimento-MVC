@@ -16,5 +16,9 @@ namespace TesteBNE_Web.Controllers
         public ActionResult CadastroDisciplina() {
             return View();
         }
+        public ActionResult AdicionarDisciplina()
+        {
+            return View();
+        }
     }
 }

@@ -93,11 +93,10 @@
     <Content Include="Scripts\botaoExcluir.js" />
     <Content Include="Scripts\cadastrarDisciplina.js" />
     <Content Include="Scripts\carregamentoCadastroAlunoPage.js" />
-    <Content Include="Scripts\editarAluno.js" />
     <Content Include="Scripts\excluir.js" />
     <Content Include="Scripts\listarAlunos.js" />
     <Content Include="Scripts\listarDisciplinas.js" />
-    <Content Include="Scripts\listarDisciplinasParaVincular.js" />
+    <Content Include="Scripts\Vincular.js" />
     <Content Include="Servicos\ajax.js" />
     <Content Include="Styles\estilos.css" />
     <Content Include="Web.config" />
