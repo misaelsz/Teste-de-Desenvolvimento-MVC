@@ -82,7 +82,7 @@ function getDisciplinas(funcao) {
 }
 
 
-function getDisciplinasPorAluno() {
+function getDisciplinasParaVincular() {
 	
 	$.ajax({
 		url: 'http://localhost:63689/api/Disciplina/Vincular/' + location.href.split("/")[5],
@@ -92,6 +92,16 @@ function getDisciplinasPorAluno() {
 		console.log("...");
 
 		listarParaVinculo(data);
+	});
+}
+function getDisciplinasPorAluno() {
+	$.ajax({
+		url: 'http://localhost:63689/api/Disciplina/Vinculadas/' + location.href.split("/")[5],
+		method: 'GET'
+	}).done(function (data) {
+		console.log("retono: " + JSON.stringify(data));
+		console.log("...");
+		listarDisciplinasPorAlunos(data);
 	});
 }
 

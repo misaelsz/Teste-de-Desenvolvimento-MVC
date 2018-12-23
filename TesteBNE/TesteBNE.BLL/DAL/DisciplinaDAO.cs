@@ -14,8 +14,9 @@ namespace TesteBNE.BLL.DAL
         #region consultas
         //comandos sql
         public const string spListarDisciplinas = "SELECT * FROM dbo.Disciplinas";
+        public const string spBuscarPorAluno = "SELECT * FROM dbo.DISCIPLINAS WHERE ID_ALUNO = @ID_ALUNO";
         public const string spBuscarPorId = "SELECT * FROM dbo.Disciplinas WHERE ID_DISCIPLINA = @ID_DISCIPLINA";
-        public const string spBuscarPorAluno = "SELECT * FROM dbo.DISCIPLINAS WHERE ID_ALUNO IS NULL OR ID_ALUNO <> @ID_ALUNO";
+        public const string spBuscarNaoRelacionadas = "SELECT * FROM dbo.DISCIPLINAS WHERE ID_ALUNO IS NULL OR ID_ALUNO <> @ID_ALUNO";
         public const string spInsertDisciplina = "INSERT INTO dbo.DISCIPLINAS(NOME_DISCIPLINA, ID_ALUNO) VALUES(@Nome_disciplina, NULL);";
         public const string spUpdateDisciplina = "UPDATE dbo.Disciplinas SET NOME_DISCIPLINA = @Nome_Disciplina, ID_ALUNO = @ID_ALUNO WHERE ID_DISCIPLINA = @ID_DISCIPLINA";
         public const string spDeleteDisciplina = "DELETE dbo.Disciplinas WHERE ID_DISCIPLINA = @ID_DISCIPLINA";
@@ -115,12 +116,48 @@ namespace TesteBNE.BLL.DAL
             }
         }
 
-        public static List<Disciplina> ListarDisciplinasPorAluno(int id)
+        public static List<Disciplina> ListarDisciplinasNaoRelacionadas(int id)
         {
             List<Disciplina> disciplinas = new List<Disciplina>();
             try
             {
                
+                using (SqlConnection conn = new SqlConnection("data source=CQI-DEV-1100\\SQLEXPRESS01;initial catalog=TesteBNE_DB;persist security info=True; Integrated Security = SSPI; "))
+                {
+
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(spBuscarNaoRelacionadas, conn))
+                    {
+                        cmd.Parameters.Add(new SqlParameter("ID_ALUNO", id));
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            Disciplina disciplina = new Disciplina();
+                            disciplina.ID = reader.GetInt32(0);
+                            disciplina.Nome_Disciplina = reader.GetString(1);
+                            if (!reader.IsDBNull(2))
+                                disciplina.ID_Aluno = reader.GetInt32(2);
+
+                            disciplinas.Add(disciplina);
+                        }
+
+                    }
+
+                }
+                return disciplinas;
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+        }
+        public static List<Disciplina> ListarDisciplinasPorAluno(int id)
+        {
+            List<Disciplina> disciplinas = new List<Disciplina>();
+            try
+            {
+
                 using (SqlConnection conn = new SqlConnection("data source=CQI-DEV-1100\\SQLEXPRESS01;initial catalog=TesteBNE_DB;persist security info=True; Integrated Security = SSPI; "))
                 {
 
