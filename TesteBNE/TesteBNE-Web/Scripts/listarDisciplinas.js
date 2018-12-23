@@ -15,17 +15,6 @@ function listarDisciplinas(ObjPessoa) {
 	});
 }
 
-function listarDisciplinasPorAlunos(ObjDisciplinas) {
-	console.log(JSON.stringify(ObjDisciplinas));
-	$.each(ObjDisciplinas, function (chave, valor) {
-		$("#listaVinculadas tbody").append(
-			"<tr>" +
-			"<td>" + valor.Nome_Disciplina + "</td>"
-			
-		);
-	});
-}
-
 
 
 function carregarCadastroParaEdicao(id) {

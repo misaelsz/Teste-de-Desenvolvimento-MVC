@@ -121,7 +121,6 @@
     <Content Include="Views\Aluno\CadastroAluno.cshtml" />
     <Content Include="Views\Disciplina\CadastroDisciplina.cshtml" />
     <Content Include="Views\Disciplina\AdicionarDisciplina.cshtml" />
-    <Content Include="Views\Disciplina\DisciplinasVinculadas.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -20,9 +20,5 @@ namespace TesteBNE_Web.Controllers
         {
             return View();
         }
-        public ActionResult DisciplinasVinculadas()
-        {
-            return View();
-        }
     }
 }

@@ -44,20 +44,6 @@ namespace TesteBNEWebAPI.Controllers
         public HttpResponseMessage GetNaoRelacionadas(int id) {
             try
             {
-                return Request.CreateResponse(HttpStatusCode.OK, DisciplinaDAO.ListarDisciplinasNaoRelacionadas(id));
-            }
-            catch (Exception ex)
-            {
-
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
-            }
-        }
-
-        [Route("Vinculadas/{id}")]
-        public HttpResponseMessage GetVinculadas(int id)
-        {
-            try
-            {
                 return Request.CreateResponse(HttpStatusCode.OK, DisciplinaDAO.ListarDisciplinasPorAluno(id));
             }
             catch (Exception ex)
